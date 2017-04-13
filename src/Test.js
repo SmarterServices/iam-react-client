@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Validate from './Validate';
+import ValidateConstructor from './Validate'
 var testIam = {
   "Statement": [
     {
@@ -23,13 +23,16 @@ var testIam = {
     }
   ]
 }
+var Validate = new ValidateConstructor({iam:testIam,
+    hash:'71f6fecdccfb029646d684255290a38ef99cb9e5fa21c03445b1b4c1bd102581'});
+
 
 class Test extends Component {
   render() {
     return (
       <div className="App">
 
-        <Validate iam={testIam}>
+        <Validate>
 
         <div>
           <p iamAction="CanUpdate" iamResource="ssrn:ss:iam:::account/100/assestmentgroup/2/customquestions">This is nested and should hide</p>
@@ -45,12 +48,12 @@ class Test extends Component {
 
 
 
-       <Validate iam={testIam} iamAction="CanRead" iamResource="ssrn:ss:iam:::account/100/assestmentgroup/2/customquestions">
+       <Validate iamAction="CanRead" iamResource="ssrn:ss:iam:::account/100/assestmentgroup/2/customquestions">
         <p> This should show and is nested in validate that has action and resourse</p>
        </Validate> 
 
 
-       <Validate iam={testIam} iamAction="CanUpdate" iamResource="ssrn:ss:iam:::account/100/assestmentgroup/2/customquestions">
+       <Validate iamAction="CanUpdate" iamResource="ssrn:ss:iam:::account/100/assestmentgroup/2/customquestions">
         <p> This should hide and is nested in validate that has action and resourse</p>
        </Validate>
 

@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import iam from 'open-iam';
+import sha256 from 'sha256';
+import _ from 'lodash';
 import Children from 'react-children-utilities';
-
-class Validate extends Component {
+var ValidateConstructor = function(config) {
+return class Validate extends Component {
   render() {
+    let localIam = _.cloneDeep(config.iam)
+    let hash = _.cloneDeep(config.hash)
+    if(sha256(JSON.stringify(localIam)) != hash || !hash) {
+      throw Error('Iam document tampered with or hash missing');
+    }
     //childrenWithProps is what will be spit back out by validate and displayed to the dom.
     let children = null
 
     //if action and resource was tagged to validate then it is applyed to every child nested inside
     if(this.props.iamAction && this.props.iamResource) {
       //check auth based on the iam doc action and resource to decide if this child content should be displayed.
-      if(iam.authorize(this.props.iamResource,this.props.iamAction,iam.processIamData(this.props.iam))) {
+      if(iam.authorize(this.props.iamResource,this.props.iamAction,iam.processIamData(localIam))) {
         //set childWithProps to the unaltered children because auth returned true
        children = this.props.children;
       } else {
@@ -24,7 +31,7 @@ class Validate extends Component {
       //if this child has action and resource run auth against it
       if(child.props.iamAction && child.props.iamResource) {
         //either return the child or blank based on iam authorize
-        return (iam.authorize(child.props.iamResource,child.props.iamAction,iam.processIamData(this.props.iam))) ? child : '' 
+        return (iam.authorize(child.props.iamResource,child.props.iamAction,iam.processIamData(localIam))) ? child : '' 
       } else {
         //no action or resource so its a normal dom element
       return child
@@ -40,4 +47,7 @@ class Validate extends Component {
   }
 }
 
-export default Validate;
+}
+
+
+export default ValidateConstructor;
