@@ -1,0 +1,23 @@
+{
+  "name": "react-ui-validate",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "0.9.5"
+  },
+  "dependencies": {
+    "open-iam": "0.0.12",
+    "react": "^15.5.4",
+    "react-children-utilities": "^0.1.7",
+    "react-dom": "^15.5.4"
+  },
+  "author": {
+    "name":"Jordan L Piepkow"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
