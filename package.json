@@ -1,5 +1,5 @@
 {
-  "name": "iam-react-client",
+  "name": "@smarterservices/iam-react-client",
   "version": "0.0.1",
   "devDependencies": {
     "react-scripts": "0.9.5"
