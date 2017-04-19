@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import iam from 'open-iam';
-import sha256 from 'sha256';
 import _ from 'lodash';
 import Children from 'react-children-utilities';
 var ValidateConstructor = function(config) {
 return class Validate extends Component {
   render() {
     let localIam = _.cloneDeep(config.iam)
-    let hash = _.cloneDeep(config.hash)
-    if(sha256(JSON.stringify(localIam)) != hash || !hash) {
-      throw Error('Iam document tampered with or hash missing');
-    }
-    //childrenWithProps is what will be spit back out by validate and displayed to the dom.
     let children = null
 
     //if action and resource was tagged to validate then it is applyed to every child nested inside

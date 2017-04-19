@@ -23,8 +23,7 @@ var testIam = {
     }
   ]
 }
-var Validate = new ValidateConstructor({iam:testIam,
-    hash:'71f6fecdccfb029646d684255290a38ef99cb9e5fa21c03445b1b4c1bd102581'});
+var Validate = new ValidateConstructor({iam:testIam});
 
 
 class Test extends Component {
