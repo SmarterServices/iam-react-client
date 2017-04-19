@@ -4,7 +4,7 @@ Description: A component that will remove are add elements to the dom based on i
 Getting Started:
 ===
 	var ValidateConstructor = require('ValidateConstructor')
-	var Validate = new ValidateConstructor({iam:'iam object',hash:'has of iam object'})
+	var Validate = new ValidateConstructor({iam:'iam object'})
 Two ways of use:
 =
 1.
