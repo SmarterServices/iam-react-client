@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import iam from 'open-iam';
-import _ from 'lodash';
 import Children from 'react-children-utilities';
 var ValidateConstructor = function(config) {
 return class Validate extends Component {
   render() {
-    let localIam = _.cloneDeep(config.iam)
+    let localIam = config.iam
     let children = null
 
     //if action and resource was tagged to validate then it is applyed to every child nested inside

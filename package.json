@@ -5,12 +5,10 @@
     "react-scripts": "0.9.5"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
     "open-iam": "0.0.12",
     "react": "^15.5.4",
     "react-children-utilities": "^0.1.7",
     "react-dom": "^15.5.4",
-    "sha256": "^0.2.0"
   },
   "author": {
     "name": "Jordan L Piepkow"
