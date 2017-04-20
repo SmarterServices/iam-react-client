@@ -1,14 +1,13 @@
 {
-  "name": "@smarterservices/iam-react-client",
-  "version": "0.0.2",
+  "name": "iam-react-client",
+  "version": "1.0.0",
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "react-dom": "^15.5.4"
   },
   "dependencies": {
     "open-iam": "0.0.12",
-    "react": "^15.5.4",
-    "react-children-utilities": "^0.1.7",
-    "react-dom": "^15.5.4",
+    "react": "^15.5.4"
   },
   "author": {
     "name": "Jordan L Piepkow"
