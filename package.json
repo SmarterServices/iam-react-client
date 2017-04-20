@@ -8,7 +8,7 @@
     "open-iam": "0.0.12",
     "react": "^15.5.4",
     "react-children-utilities": "^0.1.7",
-    "react-dom": "^15.5.4",
+    "react-dom": "^15.5.4"
   },
   "author": {
     "name": "Jordan L Piepkow"
