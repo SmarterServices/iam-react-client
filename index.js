@@ -60,7 +60,7 @@ var ValidateConstructor = function ValidateConstructor(config) {
           //else validate will loop its children recursively and look for action/resources tagged to any ui element
           children = _reactChildrenUtilities2.default.deepMap(this.props.children, function (child) {
             //if this child has action and resource run auth against it
-            if (child.props.iamAction && child.props.iamResource) {
+            if (child.props && child.props.iamAction && child.props.iamResource) {
               //either return the child or blank based on iam authorize
               return _openIam2.default.authorize(child.props.iamResource, child.props.iamAction, _openIam2.default.processIamData(localIam)) ? child : '';
             } else {
