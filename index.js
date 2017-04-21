@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -13,14 +17,6 @@ var _react2 = _interopRequireDefault(_react);
 var _openIam = require('open-iam');
 
 var _openIam2 = _interopRequireDefault(_openIam);
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _reactChildrenUtilities = require('react-children-utilities');
-
-var _reactChildrenUtilities2 = _interopRequireDefault(_reactChildrenUtilities);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41,13 +37,32 @@ var ValidateConstructor = function ValidateConstructor(config) {
     }
 
     _createClass(Validate, [{
+      key: 'deepMap',
+      value: function deepMap(children, deepMapFn) {
+        var _this2 = this;
+
+        return _react.Children.map(children, function (child) {
+          if (child) {
+            if (child.props && child.props.children && _typeof(child.props.children) === 'object') {
+              // Clone the child that has children and map them too
+              return deepMapFn((0, _react.cloneElement)(child, _extends({}, child.props, {
+                children: _this2.deepMap(child.props.children, deepMapFn)
+              })));
+            }
+            return deepMapFn(child);
+          } else {
+            return child;
+          }
+        });
+      }
+    }, {
       key: 'render',
       value: function render() {
-        var localIam = _lodash2.default.cloneDeep(config.iam);
+        var localIam = config.iam;
         var children = null;
 
         //if action and resource was tagged to validate then it is applyed to every child nested inside
-        if (this.props.iamAction && this.props.iamResource) {
+        if (this.props && this.props.iamAction && this.props.iamResource) {
           //check auth based on the iam doc action and resource to decide if this child content should be displayed.
           if (_openIam2.default.authorize(this.props.iamResource, this.props.iamAction, _openIam2.default.processIamData(localIam))) {
             //set childWithProps to the unaltered children because auth returned true
@@ -58,7 +73,7 @@ var ValidateConstructor = function ValidateConstructor(config) {
           }
         } else {
           //else validate will loop its children recursively and look for action/resources tagged to any ui element
-          children = _reactChildrenUtilities2.default.deepMap(this.props.children, function (child) {
+          children = this.deepMap(this.props.children, function (child) {
             //if this child has action and resource run auth against it
             if (child.props && child.props.iamAction && child.props.iamResource) {
               //either return the child or blank based on iam authorize
