@@ -6,7 +6,7 @@
     "react-dom": "^15.5.4"
   },
   "dependencies": {
-    "open-iam": "0.0.12",
+    "open-iam": "1.0.3",
     "react": "^15.5.4"
   },
   "author": {
