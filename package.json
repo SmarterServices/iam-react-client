@@ -1,6 +1,6 @@
 {
   "name": "@smarterservices/iam-react-client",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "devDependencies": {
     "react-scripts": "0.9.5",
     "react-dom": "^15.5.4"
