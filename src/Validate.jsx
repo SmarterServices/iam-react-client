@@ -65,7 +65,7 @@ var ValidateConstructor = function(config) {
         });
       }
       return (
-        <div className="none">
+        <div className="none" style={{'display':'inlineBlock'}}>
           {children}
         </div>
       );
