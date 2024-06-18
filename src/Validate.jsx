@@ -25,6 +25,16 @@ var ValidateConstructor = function(config) {
         }
       });
     }
+
+    isAuthorized(iamAction, iamResource) {
+      const localIam = config.iam;
+      
+      return iam.authorize(
+        iamResource,
+        iamAction,
+        iam.processIamData(localIam)
+      )
+    }
     render() {
       let localIam = config.iam;
       let children = null;
@@ -72,5 +82,5 @@ var ValidateConstructor = function(config) {
     }
   };
 };
-
+export { isAuthorized };
 export default ValidateConstructor;
