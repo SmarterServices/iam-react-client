@@ -1,52 +1,57 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _openIam = require('open-iam');
-
-var _openIam2 = _interopRequireDefault(_openIam);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
+exports.isAuthorized = exports["default"] = void 0;
+var _react = _interopRequireWildcard(require("react"));
+var _openIam = _interopRequireDefault(require("open-iam"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
+function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
+function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
+function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
+function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+var isAuthorized = exports.isAuthorized = function isAuthorized(iamAction, iamResource, localIam) {
+  if (_typeof(localIam) === 'object') {
+    return _openIam["default"].authorize(iamResource, iamAction, _openIam["default"].processIamData(localIam));
+  } else if (typeof localIam === 'string') {
+    return _openIam["default"].authorize(iamResource, iamAction, _openIam["default"].processIamData(JSON.parse(localIam)));
+  } else {
+    console.warn("Please pass a valid iam object or string to use the function 'isAuthorized'");
+    return false;
+  }
+};
 var ValidateConstructor = function ValidateConstructor(config) {
-  return function (_Component) {
-    _inherits(Validate, _Component);
-
+  return /*#__PURE__*/function (_Component) {
     function Validate() {
       _classCallCheck(this, Validate);
-
-      return _possibleConstructorReturn(this, (Validate.__proto__ || Object.getPrototypeOf(Validate)).apply(this, arguments));
+      return _callSuper(this, Validate, arguments);
     }
-
-    _createClass(Validate, [{
-      key: 'deepMap',
+    _inherits(Validate, _Component);
+    return _createClass(Validate, [{
+      key: "deepMap",
       value: function deepMap(children, deepMapFn) {
-        var _this2 = this;
-
+        var _this = this;
         return _react.Children.map(children, function (child) {
           if (child) {
             if (child.props && child.props.children && _typeof(child.props.children) === 'object') {
               // Clone the child that has children and map them too
-              return deepMapFn((0, _react.cloneElement)(child, _extends({}, child.props, {
-                children: _this2.deepMap(child.props.children, deepMapFn)
+              return deepMapFn( /*#__PURE__*/(0, _react.cloneElement)(child, _objectSpread(_objectSpread({}, child.props), {}, {
+                children: _this.deepMap(child.props.children, deepMapFn)
               })));
             }
             return deepMapFn(child);
@@ -56,7 +61,7 @@ var ValidateConstructor = function ValidateConstructor(config) {
         });
       }
     }, {
-      key: 'render',
+      key: "render",
       value: function render() {
         var localIam = config.iam;
         var children = null;
@@ -64,7 +69,7 @@ var ValidateConstructor = function ValidateConstructor(config) {
         //if action and resource was tagged to validate then it is applyed to every child nested inside
         if (this.props && this.props.iamAction && this.props.iamResource) {
           //check auth based on the iam doc action and resource to decide if this child content should be displayed.
-          if (_openIam2.default.authorize(this.props.iamResource, this.props.iamAction, _openIam2.default.processIamData(localIam))) {
+          if (_openIam["default"].authorize(this.props.iamResource, this.props.iamAction, _openIam["default"].processIamData(localIam))) {
             //set childWithProps to the unaltered children because auth returned true
             children = this.props.children;
           } else {
@@ -77,23 +82,16 @@ var ValidateConstructor = function ValidateConstructor(config) {
             //if this child has action and resource run auth against it
             if (child.props && child.props.iamAction && child.props.iamResource) {
               //either return the child or blank based on iam authorize
-              return _openIam2.default.authorize(child.props.iamResource, child.props.iamAction, _openIam2.default.processIamData(localIam)) ? child : '';
+              return _openIam["default"].authorize(child.props.iamResource, child.props.iamAction, _openIam["default"].processIamData(localIam)) ? child : '';
             } else {
               //no action or resource so its a normal dom element
               return child;
             }
           });
         }
-        return _react2.default.createElement(
-          'div',
-          { className: 'none', style: {'display':'inline-block'} },
-          children
-        );
+        return children;
       }
     }]);
-
-    return Validate;
   }(_react.Component);
 };
-
-exports.default = ValidateConstructor;
+var _default = exports["default"] = ValidateConstructor;
