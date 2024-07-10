@@ -9,11 +9,15 @@ const isAuthorized = (iamAction, iamResource, localIam) => {
       iam.processIamData(localIam)
     )
   } else if (typeof localIam === 'string') {
-    return iam.authorize(
-      iamResource,
-      iamAction,
-      iam.processIamData(JSON.parse(localIam))
-    )
+    try {
+      return iam.authorize(
+        iamResource,
+        iamAction,
+        iam.processIamData(JSON.parse(localIam))
+      );
+    } catch (err) {
+      return false;
+    }
   } else {
     console.warn("Please pass a valid iam object or string to use the function 'isAuthorized'");
     return false;

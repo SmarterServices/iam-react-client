@@ -29,7 +29,11 @@ var isAuthorized = exports.isAuthorized = function isAuthorized(iamAction, iamRe
   if (_typeof(localIam) === 'object') {
     return _openIam["default"].authorize(iamResource, iamAction, _openIam["default"].processIamData(localIam));
   } else if (typeof localIam === 'string') {
-    return _openIam["default"].authorize(iamResource, iamAction, _openIam["default"].processIamData(JSON.parse(localIam)));
+    try {
+      return _openIam["default"].authorize(iamResource, iamAction, _openIam["default"].processIamData(JSON.parse(localIam)));
+    } catch (err) {
+      return false;
+    }
   } else {
     console.warn("Please pass a valid iam object or string to use the function 'isAuthorized'");
     return false;
