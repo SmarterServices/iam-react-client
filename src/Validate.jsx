@@ -1,6 +1,29 @@
 import React, { Component, Children, cloneElement } from 'react';
 import iam from 'open-iam';
 
+const isAuthorized = (iamAction, iamResource, localIam) => {
+  if (typeof localIam === 'object') {
+    return iam.authorize(
+      iamResource,
+      iamAction,
+      iam.processIamData(localIam)
+    )
+  } else if (typeof localIam === 'string') {
+    try {
+      return iam.authorize(
+        iamResource,
+        iamAction,
+        iam.processIamData(JSON.parse(localIam))
+      );
+    } catch (err) {
+      return false;
+    }
+  } else {
+    console.warn("Please pass a valid iam object or string to use the function 'isAuthorized'");
+    return false;
+  }
+}
+
 var ValidateConstructor = function(config) {
   return class Validate extends Component {
     deepMap(children, deepMapFn) {
@@ -64,13 +87,9 @@ var ValidateConstructor = function(config) {
           }
         });
       }
-      return (
-        <div className="none" style={{'display':'inlineBlock'}}>
-          {children}
-        </div>
-      );
+      return children;
     }
   };
 };
-
+export { isAuthorized };
 export default ValidateConstructor;
